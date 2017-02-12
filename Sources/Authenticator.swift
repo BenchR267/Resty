@@ -14,7 +14,11 @@ public protocol Authenticator {
 
 public struct SimpleAuthenticator: Authenticator {
     
-    let authenticationBlock: (inout URLRequest) -> Void
+    public let authenticationBlock: (inout URLRequest) -> Void
+    
+    public init(block: @escaping (inout URLRequest) -> Void) {
+        self.authenticationBlock = block
+    }
     
     public func authenticate(request: inout URLRequest) {
         self.authenticationBlock(&request)

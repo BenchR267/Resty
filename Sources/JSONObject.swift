@@ -27,7 +27,7 @@ extension Array: JSONObject where Element: JSONObject {
 
 public struct JSONArray<Element: JSONObject>: JSONObject {
     
-    let array: [Element]
+    public let array: [Element]
     
     public init?(json: Any) {
         guard let e = json as? [Any] else {

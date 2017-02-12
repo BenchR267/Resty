@@ -65,7 +65,7 @@ public class Client {
             completion(Response(res: nil, error: Errors.invalidUrl(endpoint.path)))
             return
         }
-        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             completion(Response(res: nil, error: Errors.invalidUrl(url.absoluteString)))
             return
         }

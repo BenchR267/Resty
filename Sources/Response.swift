@@ -9,6 +9,6 @@
 import Foundation
 
 public struct Response<ResponseType: JSONObject> {
-    let res: ResponseType?
-    let error: Error?
+    public let res: ResponseType?
+    public let error: Error?
 }
