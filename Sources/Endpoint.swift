@@ -29,7 +29,11 @@ public extension URLParameterType {
 }
 
 public enum PostBody {
-    case none, string(String), data(Data), json(Any), url([String: String])
+    case none
+    case string(String)
+    case data(Data)
+    case json(Any)
+    case url([String: String])
 }
 
 public protocol PostBodyType {
@@ -40,6 +44,13 @@ public extension PostBodyType {
     var postBody: PostBody {
         return .none
     }
+}
+
+public enum RequestMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
 }
 
 public protocol Endpoint: URLParameterType, HeaderType {
