@@ -8,21 +8,21 @@
 
 import Foundation
 
-public protocol ParameterDecoder {
+public protocol ParameterEncoder {
     associatedtype From
     associatedtype To
-    static func decode(from: From) -> To
+    static func encode(from: From) -> To
 }
 
-public struct URLParameterDecoder: ParameterDecoder {
-    public static func decode(from: [String: String]) -> String {
+public struct URLParameterEncoder: ParameterEncoder {
+    public static func encode(from: [String: String]) -> String {
         return from.map { k, v in "\(k)=\(v)" }
                    .joined(separator: "&")
     }
 }
 
-public struct PostParameterEncoder: ParameterDecoder {
-    public static func decode(from: PostBody) -> Data? {
+public struct PostParameterEncoder: ParameterEncoder {
+    public static func encode(from: PostBody) -> Data? {
         
         switch from {
         case .none: return nil
@@ -35,7 +35,7 @@ public struct PostParameterEncoder: ParameterDecoder {
                 print("Could not serialize object: \(json)")
                 return nil
             }
-        case .url(let p): return URLParameterDecoder.decode(from: p).data(using: .utf8)
+        case .url(let p): return URLParameterEncoder.encode(from: p).data(using: .utf8)
         }
     }
 }

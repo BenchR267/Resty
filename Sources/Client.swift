@@ -72,7 +72,7 @@ public class Client {
         
         // URL Parameter
         if !endpoint.urlParameter.isEmpty {
-            components.query = URLParameterDecoder.decode(from: endpoint.urlParameter)
+            components.query = URLParameterEncoder.encode(from: endpoint.urlParameter)
         }
         
         guard let requestUrl = components.url else {
@@ -89,7 +89,7 @@ public class Client {
         }
         
         // POST BODY
-        if let post = endpoint as? PostBodyType, let data = PostParameterEncoder.decode(from: post.postBody) {
+        if let post = endpoint as? PostBodyType, let data = PostParameterEncoder.encode(from: post.postBody) {
             request.setValue("\(data.count)", forHTTPHeaderField: "Content-Length")
             request.httpBody = data
         }
