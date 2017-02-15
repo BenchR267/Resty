@@ -62,4 +62,4 @@ public protocol Endpoint: URLParameterType, HeaderType {
 public protocol GET: Endpoint {}
 public protocol POST: Endpoint, PostBodyType {}
 public protocol PUT: Endpoint, PostBodyType {}
-public protocol DELETE: Endpoint, PostBodyType {}
+public protocol DELETE: Endpoint {}
